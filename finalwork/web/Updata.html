@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<!--  <link rel="stylesheet" href="css/Blank.css">-->
+  <title>生育率可视化数据更新</title>
+  <style>
+    body {
+      background-image: url("http://localhost:8082/finalwork_war_exploded/balkgb.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
+  <script src="js/jquery.js"></script>
+  <script>
+    $(function (){
+      $("#inputdata").submit(function (event){
+        event.preventDefault();
+
+        // 发送异步请求
+        $.ajax({
+          url: "http://localhost:8082/finalwork_war_exploded/servletInput",  // 后端处理脚本的 URL
+          method: "POST",     // HTTP 请求方法
+          data: $(this).serialize(),  // 将表单数据序列化为字符串
+          success: function(response) {
+            // 处理成功返回的响应
+            alert("提交成功！");
+          },
+          error: function(xhr, status, error) {
+            // 处理发生错误的结果
+            alert("错误：" + error);
+          }
+        });
+      });
+
+    })
+  </script>
+
+
+</head>
+<body >
+<h1>生育率可视化数据更新</h1>
+<form name="inputdata" action="http://localhost:8082/finalwork_war_exploded/servletInput" method="post" >
+
+  <label for="select-data">可视化数据：</label>
+  <br>
+  <br>
+  <select id="select-data" name="select-data">
+    <option name="table">生育率</option>
+    <option name="table">结婚率</option>
+    <option name="table">历年GPD</option>
+    <option name="table">历年房价指数</option>
+    <option name="table">历年CPI指数</option>
+  </select>
+  <br>
+  <br>
+  <select id="optiondata" name="select-data">
+    <option name="option">插入</option>
+    <option name="option">更新修改</option>
+    <option name="option">删除</option>
+
+  </select>
+  <br>
+
+
+    <input name="inputYear" placeholder=请输入年份">
+  <br>
+
+  <br>
+  <input name ="inputRate" placeholder ="比率">
+
+  <br>
+  <br><br>
+  <button type="submit">提交</button>
+
+</form>
+<p></p>
+</body>
+</html>

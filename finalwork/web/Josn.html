@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src ="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+   // $(document).ready(function () {
+   //     $("#10").click(function () {
+   //         $.getJSON("http://localhost:8082/finalwork_war_exploded/servletJson", action = "doGet", function (data) {
+   //             var date=JSON.parse(data)
+   //             for (let i = 0; i < date.length; i++) {
+   //                 var dataCPI = date.CPI_CN[i].data_CPI;
+   //                 var cpi_Rate = date.CPI_CN[i].cpi_Rate;
+   //                 console.log("Name: " + dataCPI + ", Age: " + cpi_Rate)
+   //             }
+   //         })
+   //     })
+   // })
+
+   //     var xhr = new XMLHttpRequest();
+   //     xhr.open('GET', 'http://localhost:8082/finalwork_war_exploded/servletJson');  // 替换url为Java服务端的请求地址
+   //     xhr.onreadystatechange = function () {
+   //
+   //         if (this.readyState === 4 && this.status === 200) {
+   //
+   //             var jsonString = this.responseText;
+   //             var persons = JSON.parse(jsonString);
+   //
+   //             // console.log(persons.date_CPI.map(function(item) {
+   //             //     return item.value;
+   //             // }),)
+   //
+   //             //     for (var i = 0; i < persons.length; i++) {
+   //             //     var name = persons[i].date_CPI;
+   //             //     var age = persons[i].cpi_Rate;
+   //             //     console.log("Name: " + name + ", Age: " + age);
+   //             // }
+   //         }
+   //     };
+   //     xhr.send();
+   //
+   // var otherObj = {
+   //     name: '',
+   //     age: '',
+   //     hobbies: []
+   // };
+   //
+   // function getDataCallback(responseJson) {
+   //     var responseObject = JSON.parse(responseJson);
+   //     var name = responseObject.name;
+   //     var age = responseObject.age;
+   //     var hobbies = responseObject.hobbies;
+   //
+   //     otherObj.name = name;
+   //     otherObj.age = age;
+   //     otherObj.hobbies = hobbies;
+   // }
+   //
+   // // 发送 Ajax 请求并在获得响应后调用回调函数
+   // var xhr = new XMLHttpRequest();
+   // xhr.onreadystatechange = function() {
+   //     if (xhr.readyState === 4 && xhr.status === 200) {
+   //         var responseJson = xhr.responseText;
+   //         getDataCallback(responseJson);
+   //     }
+   // };
+   // xhr.open('GET', '/api/user/1');
+   // xhr.send();
+
+
+   // 发送 Ajax 请求并在获得响应后调用回调函数
+   var xhr = new XMLHttpRequest();
+   xhr.onreadystatechange = function() {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+           var responseJson = xhr.responseText;
+           getDataCallback(responseJson);
+       }
+   };
+   xhr.open('GET', 'http://localhost:8082/finalwork_war_exploded/servletJson');
+   xhr.send();
+
+   var otherObj = {
+       year_cpi: [],
+       rate_cpi:[],
+   };
+
+  // function getYear(){
+  //     year:[]
+  //     for (let i = 0; i < otherObj.year_cpi.length; i++) {
+  //         parseInt()
+  //     }
+  // }
+
+   function getDataCallback(responseJson) {
+       var responseObject = JSON.parse(responseJson);
+       for (var i = 0; i < responseObject.length; i++) {
+           var year = responseObject[i].date_CPI;
+           var rate = responseObject[i].cpi_Rate;
+           otherObj.year_cpi.push(year);
+           otherObj.rate_cpi.push(rate);
+   }
+       function show(){
+           console.log(otherObj.year_cpi.reverse()+otherObj.rate_cpi.reverse())
+       }
+         show()
+
+   }
+
+
+
+</script>
+
+
+</head>
+<body>
+<input type="submit" id="10">
+<div id="11" name ="msg"></div>
+
+</body>
+</html>

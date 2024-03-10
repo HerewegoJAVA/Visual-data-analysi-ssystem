@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据可视化</title>
+    <link rel="stylesheet" href="css/Blank.css">
+
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function () {
+            $('.myscroll').myScroll({
+                speed: 60, //数值越大，速度越慢
+                rowHeight: 38 //li的高度
+            });
+        });
+
+        $(document).ready(function () {
+            var whei = $(window).width()
+            $("html").css({ fontSize: whei / 22 });
+            $(window).resize(function () {
+                var whei = $(window).width();
+                $("html").css({ fontSize: whei / 22 })
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="main">
+    <div class="header">
+        <div class="header-left fl" id="time"></div>
+        <div class="header-center fl">
+            <div class="header-title">
+                生育率可视化分析
+            </div>
+            <div class="header-img"></div>
+        </div>
+        <div class="header-right fl"></div>
+        <div class="header-bottom fl"></div>
+
+    </div>
+
+    <div class="center">
+        <div class="center-left fl">
+            <div class="left-top">
+                <!--<h1 id="ceshi">数据可视化</h1>-->
+                <div class="title">生育率的定义</div>
+                <div class="top-list">
+                    <li>总生育率,TFR被定义为如果一名妇女在其一生中经历当前特定年龄的生育率，则该妇女在其一生中将生育的平均子女数。3这是一个衡量某一特定年份生育率的指标，而不是一代女性的整个生命周期——这是一个时期，而不是一个队列指标。</li>
+                </div>
+
+            </div>
+            <div class="left-cen">
+                <div class="title">生育率的变化</div>
+                <ul class="company">
+                    <li>从1950年开始，我们从联合国人口司获得了非常好的数据。资料显示，直到1965年，世界上平均妇女有5个以上的孩子。从那时起，我们看到了前所未有的变化。这个数字已经减半。在全球范围内，每名妇女的平均生育率目前低于2.5个孩子。</li>
+                    <li></li>
+                    <li></li>
+                </ul>
+
+            </div>
+            <div class="left-bottom">
+                <div class="title">房价指数</div>
+                <div class="bottom-b">
+                    <div id="chart3" class="allnav"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="center-cen fl">
+            <div class="cen-top">
+                <div class="top-title">
+                    <ul>
+                        <li>
+                            <p>同比下跌</p>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>%</span>
+                
+                    </ul>
+                </div>
+
+                <div class="top-bottom">
+                    <div id="chart1" class="allnav"></div>
+                    <style>
+                        button{color: #c6d317;}
+                    </style>
+<!--                    <script src="./js/background.js"></script>-->
+<!--                    <input type="button" onclick="window.location.href='Updata.html'" value="修改" >-->
+                    <input type="button" onclick="jump()" value="修改" >
+                    
+                </div>
+
+
+            </div>
+            <div class="cen-bottom">
+                <div class="title">GDP</div>
+                <div class="bottom-b">
+                    <div id="chart4" class="allnav"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="center-right fr">
+            <div class="right-top">
+                <div class="title">生育率背景</div>
+
+                
+                    <div class="gun">
+                        <li style="color:darkorange;">
+                            <a href="http://www.ce.cn/xwzx/gnsz/gdxw/202301/18/t20230118_38353400.shtml" target="_blank" style="color: chocolate;">国家统计局</a>
+                        </li>
+                        <li style="color: chocolate;">
+                            <a href="http://www.stats.gov.cn/xxgk/jd/sjjd2020/202301/t20230118_1892285.html" target="_blank" style="color: chocolate;">中国人口形势报告</a>
+                        </li>
+                        <li style="color: chocolate;">
+                            <a href="https://www.gov.cn/xinwen/2021-07/21/content_5626255.htm" target="_blank" style="color: chocolate;">三胎政策</a>
+                        </li>
+                    
+                    
+                </div>
+
+            </div>
+            <div class="right-cen">
+                <div class="title">生育率与结婚率</div>
+                <div id="chart2" class="allnav"></div>
+            </div>
+            <div class="right-bottom">
+                <div class="title">cpi趋势</div>
+                <div class="chat">
+                    <div id="chart5" class="allnav"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/echat.min.js"></script>
+<script src="js/fontscroll.js"></script>
+<script src="js/echat.js"></script>
+<script src="bootstrap-5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    /*$('#ceshi').wodry({
+
+        animation: 'rotateX',
+
+        delay: 1000,
+
+        animationDuration: 800
+
+    });*/
+    /*window.onload = function () {
+        setInterval(function () {
+            var hs=document.getElementById("ceshi");
+            var hstyle=hs.style.transform;
+            if(hstyle=='rotateX(-360deg)'){
+                //console.log(1)
+                hs.style.transform='rotateX(0deg)';
+                hs.style.transform='transform 500ms cubic-bezier(0.55, 0.18, 0.92, 0.46) 0s;'
+            }else {
+                hs.style.transform='rotateX(-360deg)';
+                hs.style.transition="all 2s";
+            }
+        }, 5000);
+    };*/
+
+    //顶部时间
+    function getTime(){
+        var myDate = new Date();
+        var myYear = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+        var myMonth = myDate.getMonth()+1; //获取当前月份(0-11,0代表1月)
+        var myToday = myDate.getDate(); //获取当前日(1-31)
+        var myDay = myDate.getDay(); //获取当前星期X(0-6,0代表星期天)
+        var myHour = myDate.getHours(); //获取当前小时数(0-23)
+        var myMinute = myDate.getMinutes(); //获取当前分钟数(0-59)
+        var mySecond = myDate.getSeconds(); //获取当前秒数(0-59)
+        var week = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+        var nowTime;
+
+        nowTime = myYear+'-'+fillZero(myMonth)+'-'+fillZero(myToday)+'&nbsp;&nbsp;'+fillZero(myHour)+':'+fillZero(myMinute)+':'+fillZero(mySecond)+'&nbsp;&nbsp;'+week[myDay]+'&nbsp;&nbsp;';
+        //console.log(nowTime);
+        $('#time').html(nowTime);
+    };
+    function fillZero(str){
+        var realNum;
+        if(str<10){
+            realNum	= '0'+str;
+        }else{
+            realNum	= str;
+        }
+        return realNum;
+    }
+    setInterval(getTime,1000);
+
+</script>
+<script >
+
+<!--    -->
+//    function openwin() {
+//
+//    window.open ("Updata.html", "newwindow", "height=150, width=800, toolbar =no, menubar=no, scrollbars=no, resizable=no, location=no, status=no") //写成一行
+//
+//    }
+    
+    //-->
+    
+    </script>
+<script>
+    function jump() {
+        $.ajax({
+            url: "http://localhost:8082/finalwork_war_exploded/balkgb.png",
+            async: false,
+            success: function () {
+                // 背景图片加载完成后，再进行页面跳转
+                window.location.href = "Updata.html";
+            },
+            error: function () {
+                // 加载失败时的处理
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
